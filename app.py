@@ -1,10 +1,15 @@
 import os
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from routes import router
+
+load_dotenv()
 
 app = FastAPI(docs_url="/api/docs", openapi_url="/api/openapi.json")
 
 app.include_router(router)
+
+PORT = int(os.getenv("PORT", 5001))
 
 
 # Health check endpoint
@@ -17,4 +22,4 @@ if __name__ == "__main__":
     import uvicorn
 
     num_workers = os.cpu_count() or 1
-    uvicorn.run("app:app", host="0.0.0.0", port=5001, debug=False, workers=num_workers)
+    uvicorn.run("app:app", host="0.0.0.0", port=PORT, debug=False, workers=num_workers)
