@@ -9,7 +9,7 @@ app = FastAPI(docs_url="/api/docs", openapi_url="/api/openapi.json")
 
 app.include_router(router)
 
-PORT = int(os.getenv("PORT", 5001))
+APP_PORT = int(os.getenv("APP_PORT", 5001))
 
 
 # Health check endpoint
@@ -22,4 +22,4 @@ if __name__ == "__main__":
     import uvicorn
 
     num_workers = os.cpu_count() or 1
-    uvicorn.run("app:app", host="0.0.0.0", port=PORT, debug=False, workers=num_workers)
+    uvicorn.run("app:app", host="0.0.0.0", port=APP_PORT, debug=False, workers=num_workers)
