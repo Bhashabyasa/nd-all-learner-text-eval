@@ -83,8 +83,10 @@ async def compute_errors(data: TextData):
         hypothesis = data.hypothesis if data.hypothesis is not None else ""
         language = data.language
 
+
         # Validate language
-        allowed_languages = {"en", "ta", "te", "kn", "hi"}
+        allowed_languages = {"en", "ta", "te", "kn", "hi", "gu", "or"}
+        print("language ::", language)
         if language not in allowed_languages:
             raise HTTPException(
                 status_code=400,

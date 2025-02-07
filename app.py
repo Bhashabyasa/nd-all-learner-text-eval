@@ -9,14 +9,13 @@ app = FastAPI(docs_url="/api/docs", openapi_url="/api/openapi.json")
 
 app.include_router(router)
 
-APP_PORT = int(os.getenv("APP_PORT", 5001))
-
-
 # Health check endpoint
 @app.get("/ping")
 async def health_check():
-    return {"status": True, "message": "Text Eval Service is working"}
-
+    return {
+        "status": True,
+        "message": "Text Eval Service is working"
+    }
 
 if __name__ == "__main__":
     import uvicorn
